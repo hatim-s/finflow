@@ -5,7 +5,7 @@ export type StackProps = ComponentProps<"div"> & {
   direction?: "row" | "column";
 };
 
-const stackVariants = cva("flex ", {
+const stackVariants = cva("flex", {
   variants: {
     direction: {
       row: "flex-row",
