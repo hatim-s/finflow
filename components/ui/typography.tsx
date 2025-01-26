@@ -24,7 +24,7 @@ function TypographyH2({
   return (
     <h2
       className={clsx(
-        "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0",
+        "scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0",
         className,
       )}
     >
@@ -69,11 +69,7 @@ function TypographyP({
   children,
   className,
 }: PropsWithChildren<Omit<TypographyProps, "variant">>) {
-  return (
-    <p className={clsx("leading-7 [&:not(:first-child)]:mt-6", className)}>
-      {children}
-    </p>
-  );
+  return <p className={clsx(className)}>{children}</p>;
 }
 
 const TypographyVariantsMap = {

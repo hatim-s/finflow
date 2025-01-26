@@ -12,7 +12,6 @@ export default function Income({
     <Input
       id="income"
       placeholder="Enter your income"
-      type="number"
       value={income}
       onChange={handleIncomeChange}
     />
