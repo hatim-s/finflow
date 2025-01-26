@@ -46,12 +46,9 @@ export default function InputSection() {
   }, [cardState]);
 
   const [income, setIncome] = useState<number | undefined>();
-  const handleIncomeChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setIncome(Number(e.target.value));
-    },
-    [],
-  );
+  const handleIncomeChange = useCallback((_income: number | undefined) => {
+    setIncome(typeof _income === "number" ? Number(_income) : undefined);
+  }, []);
 
   const [selectedCatogories, setSelectedCategories] = useState<string[]>([]);
   const onSelectCategory = useCallback(
@@ -82,6 +79,8 @@ export default function InputSection() {
 
   const [screen, setScreen] = useState<"input" | "output">("input");
 
+  console.log("🚀 ~ ", { expenses, income });
+
   return screen === "input" ? (
     <Card className="h-[68%] w-1/2 min-w-[600px] flex flex-col border-none rounded-[30px]">
       <CardHeader />
@@ -89,7 +88,7 @@ export default function InputSection() {
         <Stack direction="column" className="w-full max-h-full">
           <ViewHeader cardState={cardState} />
           {cardState === CardState.Income ? (
-            <Income income={income} handleIncomeChange={handleIncomeChange} />
+            <Income income={income} onIncomeChange={handleIncomeChange} />
           ) : null}
           {cardState === CardState.Categories ? (
             <Categories

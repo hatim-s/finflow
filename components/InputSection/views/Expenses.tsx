@@ -1,13 +1,12 @@
-import { Input } from "@/components/ui/input";
 import { useCallback, useMemo } from "react";
 import { ALL_CATEGORIES } from "./Categories";
-// import { Stack } from "@/components/ui/stack";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Typography } from "@/components/ui/typography";
 import { Stack } from "@/components/ui/stack";
 import { Label } from "@/components/ui/label";
 import { Box } from "@/components/ui/box";
 import { Divider } from "@/components/ui/divider";
+import NumberInput from "@/components/shared/NumberInput";
 
 function ExpenseItem({
   expense,
@@ -15,12 +14,14 @@ function ExpenseItem({
   subcategory,
 }: {
   expense: number | undefined;
-  onChangeExpense?: (newExpense: number) => void;
+  onChangeExpense: (newExpense: number | undefined) => void;
   subcategory: string;
 }) {
   const handleExpense = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChangeExpense?.(Number(e.target.value));
+    (expense: number | undefined) => {
+      onChangeExpense(
+        typeof expense === "number" ? Number(expense) : undefined,
+      );
     },
     [onChangeExpense],
   );
@@ -31,7 +32,11 @@ function ExpenseItem({
       className="items-start gap-y-1 mx-1 w-[250px] self-end"
     >
       <Label className="font-medium text-sm text-wrap">{subcategory}</Label>
-      <Input className="mr-1" value={expense} onChange={handleExpense} />
+      <NumberInput
+        className="mr-1"
+        initialValue={expense}
+        onChangeValue={handleExpense}
+      />
     </Stack>
   );
 }
@@ -43,7 +48,7 @@ function ExpenseForm({
 }: {
   category: string;
   expenses: Record<string, number | undefined>;
-  onChangeExpense: (subcategory: string, expense: number) => void;
+  onChangeExpense: (subcategory: string, expense: number | undefined) => void;
 }) {
   const categoryObj = useMemo(
     () => ALL_CATEGORIES.find((cat) => cat.id === category),
@@ -84,7 +89,7 @@ export function Expenses({
   onChangeExpense: (
     category: string,
     subcategory: string,
-    expense: number,
+    expense: number | undefined,
   ) => void;
   selectedCategories: string[];
 }) {

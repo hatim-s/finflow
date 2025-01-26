@@ -1,19 +1,18 @@
-import { Input } from "@/components/ui/input";
-import { ChangeEventHandler } from "react";
+import NumberInput from "@/components/shared/NumberInput";
 
 export default function Income({
   income,
-  handleIncomeChange,
+  onIncomeChange,
 }: {
   income: number | undefined;
-  handleIncomeChange: ChangeEventHandler<HTMLInputElement>;
+  onIncomeChange: (value: number | undefined) => void;
 }) {
   return (
-    <Input
-      id="income"
+    <NumberInput
+      initialValue={income}
       placeholder="Enter your income"
       value={income}
-      onChange={handleIncomeChange}
+      onChangeValue={onIncomeChange}
     />
   );
 }
