@@ -14,6 +14,7 @@ import { Stack } from "../ui/stack";
 import Income from "./views/Income";
 import Categories from "./views/Categories";
 import { Expenses } from "./views/Expenses";
+import { ExpenseChart } from "../ExpenseChart";
 
 enum CardState {
   Income = "income",
@@ -29,6 +30,9 @@ export default function InputSection() {
     }
     if (cardState === CardState.Categories) {
       setCardState(CardState.Expenses);
+    }
+    if (cardState === CardState.Expenses) {
+      setScreen("output");
     }
   }, [cardState]);
 
@@ -76,7 +80,9 @@ export default function InputSection() {
     [],
   );
 
-  return (
+  const [screen, setScreen] = useState<"input" | "output">("input");
+
+  return screen === "input" ? (
     <Card className="h-[68%] w-1/2 flex flex-col">
       <CardHeader>
         <CardTitle>Input Section</CardTitle>
@@ -114,5 +120,7 @@ export default function InputSection() {
         </Button>
       </CardFooter>
     </Card>
+  ) : (
+    <ExpenseChart expenses={expenses} />
   );
 }
