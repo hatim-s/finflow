@@ -1,8 +1,6 @@
 "use client";
 import * as React from "react";
 import { useCallback, useState } from "react";
-
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -15,11 +13,17 @@ import Categories from "./views/Categories";
 import { Expenses } from "./views/Expenses";
 import { ExpenseChart } from "../ExpenseChart";
 import { ViewHeader } from "./components/ViewHeader";
+import { FooterActions } from "./components/FooterActions";
+import { Box } from "../ui/box";
+import { Button } from "../ui/button";
+import { ArrowLeft } from "lucide-react";
+import { Typography } from "../ui/typography";
 
 export enum CardState {
   Income = "income",
   Categories = "categories",
   Expenses = "expenses",
+  Chart = "chart",
 }
 
 export default function InputSection() {
@@ -32,7 +36,7 @@ export default function InputSection() {
       setCardState(CardState.Expenses);
     }
     if (cardState === CardState.Expenses) {
-      setScreen("output");
+      setCardState(CardState.Chart);
     }
   }, [cardState]);
 
@@ -42,6 +46,9 @@ export default function InputSection() {
     }
     if (cardState === CardState.Expenses) {
       setCardState(CardState.Categories);
+    }
+    if (cardState === CardState.Chart) {
+      setCardState(CardState.Expenses);
     }
   }, [cardState]);
 
@@ -77,46 +84,72 @@ export default function InputSection() {
     [],
   );
 
-  const [screen, setScreen] = useState<"input" | "output">("input");
-
-  console.log("🚀 ~ ", { expenses, income });
-
-  return screen === "input" ? (
+  return cardState === CardState.Chart ? (
+    <Card className="size-[90%] flex flex-col">
+      <CardHeader className="relative">
+        <Button
+          className="self-start top-6 left-8 absolute"
+          onClick={onBack}
+          variant="link"
+        >
+          <ArrowLeft className="mr-1" />
+          Edit your expense breakdown
+        </Button>
+        <Stack direction="column" className="items-center">
+          <Typography variant="h2" className="">
+            Finances Sorted! 🎉
+          </Typography>
+          <Typography variant="p" className="text-gray-500">
+            Look at Your Money in Motion
+          </Typography>
+        </Stack>
+      </CardHeader>
+      <CardContent className="flex-1">
+        <Stack className="size-full items-center" direction="column">
+          <Box className="h-full w-4/5">
+            <ExpenseChart expenses={expenses} income={income ?? 0} />
+          </Box>
+        </Stack>
+      </CardContent>
+    </Card>
+  ) : (
     <Card className="h-[68%] w-1/2 min-w-[600px] flex flex-col border-none rounded-[30px]">
       <CardHeader />
       <CardContent className="h-full min-h-0 items-center justify-center flex flex-col w-full">
         <Stack direction="column" className="w-full max-h-full">
-          <ViewHeader cardState={cardState} />
-          {cardState === CardState.Income ? (
-            <Income income={income} onIncomeChange={handleIncomeChange} />
-          ) : null}
-          {cardState === CardState.Categories ? (
-            <Categories
-              selectedCategories={selectedCatogories}
-              onSelectCategory={onSelectCategory}
-            />
-          ) : null}
-          {cardState === CardState.Expenses ? (
-            <Expenses
-              expenses={expenses}
-              onChangeExpense={handleExpenseChange}
-              selectedCategories={selectedCatogories}
-            />
-          ) : null}
+          {
+            <>
+              <ViewHeader cardState={cardState} />
+              {cardState === CardState.Income ? (
+                <Income income={income} onIncomeChange={handleIncomeChange} />
+              ) : null}
+              {cardState === CardState.Categories ? (
+                <Categories
+                  selectedCategories={selectedCatogories}
+                  onSelectCategory={onSelectCategory}
+                />
+              ) : null}
+              {cardState === CardState.Expenses ? (
+                <Expenses
+                  expenses={expenses}
+                  onChangeExpense={handleExpenseChange}
+                  selectedCategories={selectedCatogories}
+                />
+              ) : null}
+            </>
+          }
         </Stack>
       </CardContent>
-      <CardFooter className="flex justify-between flex-row-reverse">
-        <Button className="w-56" onClick={onNext} variant="default">
-          Next
-        </Button>
-        {cardState !== CardState.Income ? (
-          <Button className="w-56" onClick={onBack} variant="secondary">
-            Back
-          </Button>
-        ) : null}
+      <CardFooter className="flex justify-between flex-row-reverse gap-x-4">
+        <FooterActions
+          cardState={cardState}
+          income={income}
+          selectedCategories={selectedCatogories}
+          expenses={expenses}
+          onNext={onNext}
+          onBack={onBack}
+        />
       </CardFooter>
     </Card>
-  ) : (
-    <ExpenseChart expenses={expenses} />
   );
 }

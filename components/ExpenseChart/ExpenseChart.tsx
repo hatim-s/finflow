@@ -2,26 +2,38 @@ import { ResponsiveSankey } from "@nivo/sankey";
 
 function convertExpenseIntoChartData(
   expenses: Record<string, Record<string, number | undefined> | undefined>,
+  income: number,
 ) {
   const nodes = [] as { id: string }[];
   const links = [] as { source: string; target: string; value: number }[];
 
   nodes.push({ id: "Income" });
 
+  let totalExpenses = 0;
+
   Object.entries(expenses).forEach(([category, categoryObj]) => {
     nodes.push({ id: category });
+
+    const subcategoryTotal =
+      Object.values(categoryObj ?? {}).reduce(
+        (acc, val) => (acc ?? 0) + (val ?? 0),
+        0,
+      ) ?? 0;
+
+    if (!subcategoryTotal) return;
+
+    totalExpenses += subcategoryTotal;
+
     links.push({
       source: "Income",
       target: category,
-      value:
-        Object.values(categoryObj ?? {}).reduce(
-          (acc, val) => (acc ?? 0) + (val ?? 0),
-          0,
-        ) ?? 0,
+      value: subcategoryTotal,
     });
 
     if (categoryObj) {
       Object.entries(categoryObj).forEach(([subcategory, expense]) => {
+        if (!expense) return;
+
         nodes.push({ id: subcategory });
         links.push({
           source: category,
@@ -32,15 +44,24 @@ function convertExpenseIntoChartData(
     }
   });
 
+  nodes.push({ id: "Savings" });
+  links.push({
+    source: "Income",
+    target: "Savings",
+    value: income - totalExpenses,
+  });
+
   return { nodes, links };
 }
 
 export default function ExpenseChart({
+  income,
   expenses,
 }: {
+  income: number;
   expenses: Record<string, Record<string, number | undefined> | undefined>;
 }) {
-  const chartData = convertExpenseIntoChartData(expenses);
+  const chartData = convertExpenseIntoChartData(expenses, income);
 
   return (
     <ResponsiveSankey
