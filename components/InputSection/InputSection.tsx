@@ -8,15 +8,15 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Stack } from "../ui/stack";
 import Income from "./views/Income";
 import Categories from "./views/Categories";
 import { Expenses } from "./views/Expenses";
 import { ExpenseChart } from "../ExpenseChart";
+import { ViewHeader } from "./components/ViewHeader";
 
-enum CardState {
+export enum CardState {
   Income = "income",
   Categories = "categories",
   Expenses = "expenses",
@@ -83,12 +83,11 @@ export default function InputSection() {
   const [screen, setScreen] = useState<"input" | "output">("input");
 
   return screen === "input" ? (
-    <Card className="h-[68%] w-1/2 flex flex-col">
-      <CardHeader>
-        <CardTitle>Input Section</CardTitle>
-      </CardHeader>
+    <Card className="h-[68%] w-1/2 min-w-[600px] flex flex-col border-none rounded-[30px]">
+      <CardHeader />
       <CardContent className="h-full min-h-0 items-center justify-center flex flex-col w-full">
-        <Stack direction="column" className="space-y-1.5 w-full max-h-full">
+        <Stack direction="column" className="w-full max-h-full">
+          <ViewHeader cardState={cardState} />
           {cardState === CardState.Income ? (
             <Income income={income} handleIncomeChange={handleIncomeChange} />
           ) : null}
@@ -107,17 +106,15 @@ export default function InputSection() {
           ) : null}
         </Stack>
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button
-          disabled={cardState === CardState.Income}
-          onClick={onBack}
-          variant="ghost"
-        >
-          Back
-        </Button>
-        <Button onClick={onNext} variant="ghost">
+      <CardFooter className="flex justify-between flex-row-reverse">
+        <Button className="w-56" onClick={onNext} variant="default">
           Next
         </Button>
+        {cardState !== CardState.Income ? (
+          <Button className="w-56" onClick={onBack} variant="secondary">
+            Back
+          </Button>
+        ) : null}
       </CardFooter>
     </Card>
   ) : (

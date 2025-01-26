@@ -19,7 +19,7 @@ export default function Header(props: HeaderProps) {
     props;
   return (
     <Stack
-      className="px-8 justify-between py-3 border-b border-primary flex-row-reverse"
+      className="px-8 justify-between py-3 flex-row-reverse"
       direction="row"
     >
       {secondaryLabel || secondaryActions ? (
