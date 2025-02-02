@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <Stack
       direction="column"
-      className="h-screen w-screen overflow-hidden bg-blue-100"
+      className="h-screen w-screen overflow-hidden bg-blue-50"
     >
       <Header primaryLabel="Finflow" />
       <Stack
