@@ -43,21 +43,7 @@ export function FooterActions(props: FooterActionsProps) {
     return (
       <>
         <Button
-          className="flex-grow"
-          disabled={!income}
-          onClick={onNext}
-          variant="default"
-          size="lg"
-        >
-          <Typography
-            variant="p"
-            className="text-center text-md text-semibold "
-          >
-            {income ? "Pick Your Categories" : "Show Me the Money!"}
-          </Typography>
-        </Button>
-        <Button
-          className="flex-grow invisible"
+          className="flex-1 !max-w-[50%]"
           disabled={!income}
           onClick={onNext}
           variant="default"
@@ -78,7 +64,7 @@ export function FooterActions(props: FooterActionsProps) {
     return (
       <>
         <Button
-          className="flex-grow"
+          className="flex-1"
           disabled={!selectedCategories.length}
           onClick={onNext}
           variant="default"
@@ -94,7 +80,7 @@ export function FooterActions(props: FooterActionsProps) {
           </Typography>
         </Button>
         <Button
-          className="flex-grow"
+          className="flex-1"
           onClick={onBack}
           variant="secondary"
           size="lg"
@@ -114,7 +100,7 @@ export function FooterActions(props: FooterActionsProps) {
     return (
       <>
         <Button
-          className="flex-grow"
+          className="flex-1"
           disabled={isExpensesEmpty}
           onClick={onNext}
           variant="default"
@@ -128,7 +114,7 @@ export function FooterActions(props: FooterActionsProps) {
           </Typography>
         </Button>
         <Button
-          className="flex-grow"
+          className="flex-1"
           onClick={onBack}
           variant="secondary"
           size="lg"
@@ -156,12 +142,7 @@ export function FooterActions(props: FooterActionsProps) {
           {income ? "Pick Your Categories" : "Show Me the Money!"}
         </Typography>
       </Button>
-      <Button
-        className="flex-grow"
-        onClick={onBack}
-        variant="default"
-        size="lg"
-      >
+      <Button className="flex-1" onClick={onBack} variant="default" size="lg">
         <Typography variant="p" className="text-center text-md text-semibold ">
           Edit Category-wise expenses
         </Typography>
