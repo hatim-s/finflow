@@ -29,7 +29,7 @@ function ExpenseItem({
   return (
     <Stack
       direction="column"
-      className="items-start gap-y-1 mx-1 w-[250px] self-end"
+      className="items-start gap-y-1 mx-1 my-1 w-[250px] self-end"
     >
       <Label className="font-medium text-sm text-wrap">{subcategory}</Label>
       <NumberInput
