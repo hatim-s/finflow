@@ -85,7 +85,7 @@ export default function InputSection() {
   );
 
   return cardState === CardState.Chart ? (
-    <Card className="size-[90%] flex flex-col">
+    <Card className="size-[90%] flex flex-col z-10">
       <CardHeader className="relative">
         <Button
           className="self-start top-6 left-8 absolute"
@@ -113,7 +113,7 @@ export default function InputSection() {
       </CardContent>
     </Card>
   ) : (
-    <Card className="h-[68%] w-1/2 min-w-[600px] flex flex-col border-none rounded-[30px]">
+    <Card className="h-[68%] w-1/2 min-w-[600px] flex flex-col border-none rounded-[30px] z-10">
       <CardHeader />
       <CardContent className="h-full min-h-0 items-center justify-center flex flex-col w-full">
         <Stack direction="column" className="w-full max-h-full">
