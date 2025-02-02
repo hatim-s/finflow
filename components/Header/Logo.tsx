@@ -1,14 +1,30 @@
+import clsx from "clsx";
+
 const Logo = ({ className }: { className?: string }) => (
   <svg
     width="387.59999999999997"
     height="98.47135135135134"
     viewBox="0 0 370 94"
-    className={className}
+    className={clsx("finflow-logo", className)}
+    style={{
+      cursor: "pointer",
+    }}
   >
-    <defs id="SvgjsDefs2759"></defs>
+    <style>{`
+      .logo-underline {
+        transform-origin: left;
+        transform: scaleX(0);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .finflow-logo:hover .logo-underline {
+        transform-origin: right;
+        transform: scaleX(1);
+      }
+    `}</style>
     <g id="SvgjsG2760" transform="matrix(1,0,0,1,0,0)" fill="currentColor">
       <rect y="0" height="1" width="1" opacity="0"></rect>
-      <rect y="89" width="370" height="5"></rect>
+      <rect y="89" width="370" height="5" className="logo-underline"></rect>
     </g>
     <g
       id="SvgjsG2761"
