@@ -113,8 +113,8 @@ export default function InputSection() {
       </CardContent>
     </Card>
   ) : (
-    <Card className="h-[68%] w-1/2 min-w-[600px] flex flex-col border-none rounded-[30px] z-10">
-      <CardHeader />
+    <Card className="h-[68%] w-1/2 min-w-[620px] flex flex-col border-none rounded-[30px] z-10">
+      <CardHeader className="py-4" />
       <CardContent className="h-full min-h-0 items-center justify-center flex flex-col w-full">
         <Stack direction="column" className="w-full max-h-full">
           {
