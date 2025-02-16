@@ -1,12 +1,12 @@
 import { type Expenses } from "@/components/InputSection/hooks/useExpenses";
 import { ALL_CATEGORIES } from "@/components/shared/consts/categories";
 
-type Node = {
+export type Node = {
   id: string;
   title: string;
 };
 
-type Link = {
+export type Link = {
   source: string;
   target: string;
   value: number;

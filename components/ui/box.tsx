@@ -1,8 +1,14 @@
-import { ComponentProps } from "react";
+import { ComponentProps, forwardRef } from "react";
 
 export type BoxProps = ComponentProps<"div">;
 
-export function Box(props: BoxProps) {
-  const { children, ...rest } = props;
-  return <div {...rest}>{children}</div>;
-}
+export const Box = forwardRef<HTMLDivElement, BoxProps>(
+  function Box(props, ref) {
+    const { children, ...rest } = props;
+    return (
+      <div ref={ref} {...rest}>
+        {children}
+      </div>
+    );
+  },
+);
