@@ -1,6 +1,6 @@
 import { Typography } from "@/components/ui/typography";
-import { CardState } from "../InputSection";
 import { Stack } from "@/components/ui/stack";
+import { CardState } from "../hooks/useCardState";
 
 export function ViewHeader({ cardState }: { cardState: CardState }) {
   if (cardState === CardState.Income) {

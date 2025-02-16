@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { CardState } from "../InputSection";
 import { Typography } from "@/components/ui/typography";
 import { useMemo } from "react";
+import { CardState } from "../hooks/useCardState";
 
 type FooterActionsProps = {
   onNext: () => void;
