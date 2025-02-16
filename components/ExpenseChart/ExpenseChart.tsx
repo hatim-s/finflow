@@ -8,6 +8,7 @@ import convertExpensesToChartData from "./utils/convertExpensesToChartData";
 import useChartContainerStyles from "./hooks/useChartContainerStyles";
 import Chart from "./components/Chart";
 import ShowSavings from "./components/ShowSavings";
+import Watermark from "./components/Watermark";
 
 export default function ExpenseChart({
   income,
@@ -61,6 +62,7 @@ export default function ExpenseChart({
         <TransformComponent>
           <Box className="p-8 pt-4" ref={chartRef} style={chartContainerStyles}>
             <Chart chartData={chartData} />
+            <Watermark />
           </Box>
         </TransformComponent>
       </TransformWrapper>
