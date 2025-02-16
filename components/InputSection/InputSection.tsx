@@ -18,6 +18,7 @@ import { Box } from "../ui/box";
 import { Button } from "../ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Typography } from "../ui/typography";
+import ChartBottomInfo from "../ExpenseChart/components/BottomInfo";
 
 export enum CardState {
   Income = "income",
@@ -106,9 +107,7 @@ export default function InputSection() {
       </CardHeader>
       <CardContent className="flex-1">
         <Stack className="size-full items-center" direction="column">
-          <Box className="size-full">
-            <ExpenseChart expenses={expenses} income={income ?? 0} />
-          </Box>
+          <ExpenseChart expenses={expenses} income={income ?? 0} />
         </Stack>
       </CardContent>
     </Card>
