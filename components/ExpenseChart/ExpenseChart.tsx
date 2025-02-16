@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Box } from "../ui/box";
 import ChartBottomInfo from "./components/BottomInfo";
 import convertExpensesToChartData from "./utils/convertExpensesToChartData";
 import useChartContainerStyles from "./hooks/useChartContainerStyles";
 import Chart from "./components/Chart";
+import ShowSavings from "./components/ShowSavings";
 
 export default function ExpenseChart({
   income,
@@ -17,7 +18,8 @@ export default function ExpenseChart({
   expenses: Record<string, Record<string, number | undefined> | undefined>;
   containerRef: React.RefObject<HTMLDivElement>;
 }) {
-  const chartData = convertExpensesToChartData(expenses, income);
+  const [showIncome, setShowIncome] = useState(false);
+  const chartData = convertExpensesToChartData(expenses, income, showIncome);
   const { chartContainerStyles } = useChartContainerStyles(containerRef);
 
   return (
@@ -60,6 +62,7 @@ export default function ExpenseChart({
           </Box>
         </TransformComponent>
       </TransformWrapper>
+      <ShowSavings show={showIncome} setShowIncome={setShowIncome} />
       <ChartBottomInfo />
     </Box>
   );
