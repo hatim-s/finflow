@@ -9,7 +9,7 @@ export default function Home() {
       direction="column"
       className="h-screen w-screen overflow-hidden bg-blue-50"
     >
-      <Header />
+      <Header primaryLabel="FinFlow" />
       <Stack
         className="h-full items-center justify-center flex-1 min-h-0"
         direction="column"
