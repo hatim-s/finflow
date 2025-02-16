@@ -18,7 +18,6 @@ export default function ExpenseChart({
   containerRef: React.RefObject<HTMLDivElement>;
 }) {
   const chartData = convertExpensesToChartData(expenses, income);
-
   const { chartContainerStyles } = useChartContainerStyles(containerRef);
 
   return (
