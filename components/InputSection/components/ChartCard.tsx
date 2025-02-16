@@ -51,7 +51,7 @@ export default function ChartCard(props: ChartCardProps) {
       </CardHeader>
       <CardContent className="flex-1">
         <Stack
-          className="size-full items-center"
+          className="size-full items-center p-4"
           direction="column"
           ref={chartContainerRef}
         >
