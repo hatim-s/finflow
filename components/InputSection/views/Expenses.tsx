@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { ALL_CATEGORIES } from "./Categories";
+import { ALL_CATEGORIES } from "@/components/shared/consts/categories";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Typography } from "@/components/ui/typography";
 import { Stack } from "@/components/ui/stack";
