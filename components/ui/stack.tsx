@@ -1,5 +1,5 @@
 import { cva } from "class-variance-authority";
-import { ComponentProps } from "react";
+import { ComponentProps, forwardRef } from "react";
 
 export type StackProps = ComponentProps<"div"> & {
   direction?: "row" | "column";
@@ -14,11 +14,17 @@ const stackVariants = cva("flex", {
   },
 });
 
-export function Stack(props: StackProps) {
-  const { direction, className, children, ...rest } = props;
-  return (
-    <div {...rest} className={stackVariants({ direction, className })}>
-      {children}
-    </div>
-  );
-}
+export const Stack = forwardRef<HTMLDivElement, StackProps>(
+  function Stack(props, ref) {
+    const { direction, className, children, ...rest } = props;
+    return (
+      <div
+        {...rest}
+        className={stackVariants({ direction, className })}
+        ref={ref}
+      >
+        {children}
+      </div>
+    );
+  },
+);

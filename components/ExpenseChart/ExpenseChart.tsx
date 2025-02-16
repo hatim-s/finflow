@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { ResponsiveSankey } from "@nivo/sankey";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Box } from "../ui/box";
@@ -62,14 +64,37 @@ function convertExpenseIntoChartData(
 export default function ExpenseChart({
   income,
   expenses,
+  containerRef,
 }: {
   income: number;
   expenses: Record<string, Record<string, number | undefined> | undefined>;
+  containerRef: React.RefObject<HTMLDivElement>;
 }) {
   const chartData = convertExpenseIntoChartData(expenses, income);
 
+  const [chartContainerStyles, setChartContainerStyles] = useState<{
+    height: string | number;
+    width: string | number;
+  }>({
+    height: "100%",
+    width: "100%",
+  });
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const { height, width } = containerRef.current.getBoundingClientRect();
+
+    console.log("🚀 ~ height, width", { height, width });
+
+    setChartContainerStyles({
+      height: `${height - 16}px`,
+      width: `${width}px`,
+    });
+  }, [containerRef]);
+
   return (
-    <Box className="size-full" style={{}}>
+    <Box className="relative size-full">
       <TransformWrapper
         initialScale={1}
         minScale={0.75}
@@ -104,7 +129,7 @@ export default function ExpenseChart({
       >
         {() => (
           <TransformComponent>
-            <Box className="w-[1400px] h-[550px]">
+            <Box style={chartContainerStyles}>
               <ResponsiveSankey
                 data={chartData}
                 motionConfig="gentle"

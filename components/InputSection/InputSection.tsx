@@ -1,6 +1,6 @@
 "use client";
-import * as React from "react";
-import { useCallback, useState } from "react";
+
+import { useCallback, useState, useRef } from "react";
 import {
   Card,
   CardContent,
@@ -14,11 +14,9 @@ import { Expenses } from "./views/Expenses";
 import { ExpenseChart } from "../ExpenseChart";
 import { ViewHeader } from "./components/ViewHeader";
 import { FooterActions } from "./components/FooterActions";
-import { Box } from "../ui/box";
 import { Button } from "../ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Typography } from "../ui/typography";
-import ChartBottomInfo from "../ExpenseChart/components/BottomInfo";
 
 export enum CardState {
   Income = "income",
@@ -85,6 +83,8 @@ export default function InputSection() {
     [],
   );
 
+  const chartContainerRef = useRef<HTMLDivElement>(null);
+
   return cardState === CardState.Chart ? (
     <Card className="size-[90%] flex flex-col z-10">
       <CardHeader className="relative">
@@ -106,8 +106,16 @@ export default function InputSection() {
         </Stack>
       </CardHeader>
       <CardContent className="flex-1">
-        <Stack className="size-full items-center" direction="column">
-          <ExpenseChart expenses={expenses} income={income ?? 0} />
+        <Stack
+          className="size-full items-center"
+          direction="column"
+          ref={chartContainerRef}
+        >
+          <ExpenseChart
+            containerRef={chartContainerRef}
+            expenses={expenses}
+            income={income ?? 0}
+          />
         </Stack>
       </CardContent>
     </Card>
