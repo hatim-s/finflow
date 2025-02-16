@@ -13,7 +13,7 @@ const LinkTooltip = (props: { link: SankeyLinkDatum<Node, Link> }) => {
   return (
     <Box className="relative isolate">
       <Stack
-        className="bg-white rounded-[4px] h-6 px-2 py-1 items-center gap-x-1 shadow-md"
+        className="bg-white rounded-[4px] h-8 px-4 py-2 items-center gap-x-2 shadow-md"
         direction="row"
       >
         <Typography className="text-xs font-normal" variant="h4">
@@ -60,7 +60,13 @@ export default function Chart(props: ChartProps) {
         from: "color",
         modifiers: [["darker", 1]],
       }}
-      label={(...args) => args[0].title}
+      label={(...args) => `${args[0].title}, ${args[0].value}`}
+      theme={{
+        text: {
+          fontSize: "12px",
+          fontWeight: "bold",
+        },
+      }}
     />
   );
 }
