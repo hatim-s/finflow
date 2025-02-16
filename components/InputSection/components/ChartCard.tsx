@@ -45,22 +45,24 @@ function Header() {
 
 export default function ChartCard(props: ChartCardProps) {
   const { income, expenses, onBack, chartContainerRef } = props;
+  const chartRef = useRef<HTMLDivElement>(null);
 
   return (
     <Card className="size-[90%] flex flex-col z-10">
       <CardHeader className="relative">
         <BackButton onBack={onBack} />
         <Header />
-        <DownloadButton chartRef={chartContainerRef} />
+        <DownloadButton chartRef={chartRef} />
       </CardHeader>
-      <CardContent className="flex-1">
+      <CardContent className="flex-1 p-0">
         <Stack
-          className="size-full items-center p-4"
+          className="size-full items-center"
           direction="column"
           ref={chartContainerRef}
         >
           <ExpenseChart
             containerRef={chartContainerRef}
+            chartRef={chartRef}
             expenses={expenses}
             income={income ?? 0}
           />

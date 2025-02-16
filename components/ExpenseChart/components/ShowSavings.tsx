@@ -21,7 +21,7 @@ export default function ShowSavings(props: ShowIncomeProps) {
   return (
     <Stack
       direction="row"
-      className="absolute -bottom-3 left-0 gap-x-2 items-center"
+      className="absolute bottom-6 left-6 gap-x-2 items-center"
     >
       <Switch checked={show} onCheckedChange={handleCheckedChange} />
       <Label className="text-md">Show Savings</Label>
