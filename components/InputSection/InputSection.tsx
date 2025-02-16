@@ -106,7 +106,7 @@ export default function InputSection() {
       </CardHeader>
       <CardContent className="flex-1">
         <Stack className="size-full items-center" direction="column">
-          <Box className="h-full w-4/5">
+          <Box className="size-full">
             <ExpenseChart expenses={expenses} income={income ?? 0} />
           </Box>
         </Stack>
