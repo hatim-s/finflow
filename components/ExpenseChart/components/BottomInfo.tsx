@@ -6,7 +6,7 @@ export default function ChartBottomInfo() {
   return (
     <Stack
       direction="row"
-      className="absolute -bottom-3 right-0 gap-x-1 items-center"
+      className="absolute bottom-6 right-6 gap-x-1 items-center"
     >
       <ZoomInIcon className="text-xs size-3 text-gray-600" />
       <Typography className="text-gray-600 text-xs" variant="p">

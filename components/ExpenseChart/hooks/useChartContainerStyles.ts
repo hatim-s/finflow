@@ -18,8 +18,8 @@ export default function useChartContainerStyles(
     const height = containerRef.current.offsetHeight;
 
     setChartContainerStyles({
-      height: `${height - 16 - 2 * 16}px`,
-      width: `${width - 2 * 16}px`,
+      height: `${height - 16}px`,
+      width: `${width}px`,
     });
   }, [containerRef]);
 

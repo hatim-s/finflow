@@ -13,10 +13,12 @@ export default function ExpenseChart({
   income,
   expenses,
   containerRef,
+  chartRef,
 }: {
   income: number;
   expenses: Record<string, Record<string, number | undefined> | undefined>;
   containerRef: React.RefObject<HTMLDivElement>;
+  chartRef: React.RefObject<HTMLDivElement>;
 }) {
   const [showIncome, setShowIncome] = useState(false);
   const chartData = convertExpensesToChartData(expenses, income, showIncome);
@@ -57,7 +59,7 @@ export default function ExpenseChart({
         centerZoomedOut={false}
       >
         <TransformComponent>
-          <Box style={chartContainerStyles}>
+          <Box className="p-8 pt-4" ref={chartRef} style={chartContainerStyles}>
             <Chart chartData={chartData} />
           </Box>
         </TransformComponent>
