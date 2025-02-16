@@ -28,6 +28,7 @@ const HEADER_ACTIONS: HeaderAction[] = [
   },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- is okay
 export default function Header(props: HeaderProps) {
   return (
     <Stack
