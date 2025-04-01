@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌊 FinFlow: Ride the Waves of Your Monthly Expenses! 🌊
 
-## Getting Started
+### ⚠️ **In Development** ⚠️  
+> **Heads up!** FinFlow is currently a work-in-progress. Some features might be missing, and the waters could get a little choppy!  
+> You can check out our [Roadmap](#-roadmap) below to see what's on the horizon. 🌊
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Welcome to **FinFlow**, the easiest way to keep track of your monthly expenses and visualize where your money flows! With a sleek and interactive Sankey chart, you can see exactly where your hard-earned cash goes each month. Plus, you can export your chart for future reference or share with others!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **💰 Expense Tracker**: Log your monthly expenses in a simple, category-separated form.
+- **📊 Beautiful Sankey Chart**: Watch your expenses flow from category to category in a smooth, interactive chart.
+- **📦 Export Your Chart**: Save or share your chart with ease—make your finances look as cool as the ocean.
+- **🔵 Blue-Themed Design**: Immerse yourself in a calming, ocean-inspired user interface. 🌊
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 💻 Try FinFlow Live
 
-## Learn More
+Check out the website right now: [FinFlow](https://finflow-hatims.vercel.app/)
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ How to Use
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Add Expenses**: Enter your expenses in categories (like Rent, Groceries, Entertainment, etc.).
+2. **View Chart**: Once you've entered your expenses, navigate to the Sankey chart view to see how your money flows across the categories.
+3. **Export Chart**: With one click, export your Sankey chart as an image file.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🌀 Tech Stack
 
-## Deploy on Vercel
+- **Frontend**: React, Next.js ⚛️
+- **Styling**: TailwindCSS 🌀
+- **Chart**: Nivo 📊
+- **Deployment**: Vercel 🚀
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚢 Set Up Locally
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Want to explore the code or contribute to the project? Follow these steps:
+
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/yourusername/finflow.git
+   ```
+2. Install dependencies:  
+   ```bash
+   npm install
+   ```
+3. Run the project:  
+   ```bash
+   npm run dev
+   ```
+4. Open your browser and go to `http://localhost:3000`.
+
+---
+
+## 🛣️ Roadmap
+
+**Upcoming features and improvements**:
+- **💾 Data Persistence**: Save your expense data between sessions so you don't lose your entries!
+- **🔗 Shareable Chart Links**: Share your Sankey chart directly with others via a unique link.
+- **📱 Mobile-Responsive Design**: Make FinFlow easy to use on mobile devices.
+- **🎨 Custom Categories**: Create custom expense categories to fit your unique financial flow.
+- **🔄 Recurring Expenses**: Automatically track recurring expenses and visualize them over time.
+
+Stay tuned for these updates as we continue to smooth the seas and improve your experience!
